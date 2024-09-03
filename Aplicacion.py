@@ -15,8 +15,6 @@ import base64
 #Por defecto la versión mínima usable para la transmisión, limitada por el protocolo.
 maxversion=3
 
-#capacity=[17,32,53,78,106,134,154,192,230,271,321,367,425,458,520,586,644,718,792,858,929,1003,1091,1171,1273,1367,1465,1528,1628,1732,1840,1952,2068,2188,2303,2431,2563,2699,2809,2953]
-#sizebyversion=[27,25,21,19,17,15,13,12,11,11(10),]
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -88,9 +86,9 @@ def readQR(frame):
 
 def generateQR(datos,n_version,nombreQR):
     #Este vector genera los códigos qr ajustados al máximo tamaño que permite mi pantalla. Es necesario crearlo para cada pantalla del transmisor.
-    #Si se va a probar en otra pantalla, en la que no se ha hecho este proceso previo de calibración comentar la línea y descomentar la siguiente.
+    #En caso contrario, no está controlado el tamaño del código QR en pantalla y puede provocar fallos
     size=[27,25,21,19,17,15,13,12,11,11,10,9,9,8,8,7,7,7,6,6,6,6,5,5,5,5,5,4,4,4,4,4,4,4,4,3,3,3,3,3]
-    #size=1
+
     qr = qrcode.QRCode(
         version=n_version,
         error_correction=qrcode.ERROR_CORRECT_L,
